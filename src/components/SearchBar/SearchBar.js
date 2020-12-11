@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
 /*
  class based components used in order to use
@@ -14,7 +15,17 @@ class SearchBar extends React.Component{
     onFormSubmit = (event) => {
         event.preventDefault();
 
-        this.props.onSubmit(this.state.key);
+        axios.get('https://api.unsplash.com/search/photos',{
+            params:{
+                query:this.state.key
+            },
+            headers:{
+                Authorization:'Client-ID mJPOs6g1sa4yfwF311olHG4InGse3YElOAOzEbmu4Uo'
+            }
+        })
+        .then((response) => {
+            console.log(response);
+        });
     }
 
     render(){
